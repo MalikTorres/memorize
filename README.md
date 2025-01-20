@@ -53,5 +53,5 @@ This project is developed as part of the Stanford Swift course, which offers an 
 - Introduce sound effects and haptic feedback for a more engaging experience.
 
 ---
-Start building your SwiftUI skills today with the Memorize Card App!
+
 
