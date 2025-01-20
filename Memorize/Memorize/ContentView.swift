@@ -13,10 +13,10 @@ struct ContentView: View {
     var body: some View { // Computed Proberty
         // VStack function returns something that is a view
         HStack {
+            CardView(isFaceUp: false)
+            CardView()
             CardView(isFaceUp: true)
-            CardView()
-            CardView()
-            CardView()
+            CardView(isFaceUp: true)
         }
         // View Modifier
         .foregroundColor(.orange)
@@ -28,20 +28,26 @@ struct ContentView: View {
 
 
 struct CardView: View {
-    var isFaceUp: Bool = false
+    // @State small change
+    // Temporary state
+    // @ creates a pointer to memory
+  @State var isFaceUp = false
     // all structs every var has to have a value
     var body: some View {
-        ZStack(content: {
-            if isFaceUp {
-                RoundedRectangle(cornerRadius:12)
-                    .foregroundColor(.white)
-                RoundedRectangle(cornerRadius:12)
-                    .strokeBorder(lineWidth:2)
+        ZStack {
+            // Type Inferance
+                let base = RoundedRectangle(cornerRadius:12)
+                if isFaceUp {
+                    base.fill(.white)
+                    base.strokeBorder(lineWidth:2)
                 Text("👻").font(.largeTitle)
             } else {
                 RoundedRectangle(cornerRadius:12)
             }
-        })
+        }
+        .onTapGesture {
+            isFaceUp.toggle()
+        }
     }
 }
 
