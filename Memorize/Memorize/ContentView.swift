@@ -25,6 +25,8 @@ struct ContentView: View {
     }
 }
 
+
+
 struct CardView: View {
     var isFaceUp: Bool = false
     // all structs every var has to have a value
