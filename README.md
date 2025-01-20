@@ -1,4 +1,3 @@
-# memorize
 # Memorize Card App
 
 ## Overview
