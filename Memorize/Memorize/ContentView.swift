@@ -11,12 +11,30 @@ import SwiftUI
 struct ContentView: View {
     // Alternate way of writing
     // let emojis:[String] = ["👻","🎃","🕷️","😈"]
-    let emojis: Array<String> = ["👻","🎃","🕷️","😈","💀","🕸️", "🧙", "🙀","👹","😱","☠️","🍭"]
+//   let originalTheme: Array<String> = ["👻","🎃","🕷️","😈","💀","🕸️", "🧙", "🙀","👹","😱","☠️","🍭"]
+    
+    
+   var gymEmojis: Array<String> = ["⚽️","🏀","⚾️","🏐","🏉","🏓", "🏸", "🏒","⛳️","🥋","🤺","🥅"]
+    
+   var travelEmojis: Array<String> = ["✈️","🌎","🇪🇸","🇵🇷","🇳🇱","🥖","🍣","🌮","🍜","🥩","🌊","🍻" ]
+    
+   var studyEmojis: Array<String> = ["📌","📝","📚","🖇️","✒️","🗄️","📐","📖","📒","🙇","✂️","📋"]
+    
+    
     // some View see what is being returned and ensures that it is some view
     @State var cardCount: Int = 4
+    @State var isSelected = false
+    @State var originalTheme: Array<String> = ["👻","🎃","🕷️","😈","💀","🕸️", "🧙", "🙀","👹","😱","☠️","🍭"]
+    
+    
+    
     var body: some View { // Computed Proberty
         // VStack function returns something that is a view
+        
         VStack {
+            Text("Memorize!")
+                .font(.largeTitle)
+                .foregroundColor(.black)
             ScrollView {
                 cards
             }
@@ -24,46 +42,88 @@ struct ContentView: View {
             cardCountAdjusters
             .imageScale(.large)
             .font(.largeTitle)
+            
+            themeAdjusters
         }
         // View Modifier
         .padding()
+       
         
         
     }
     
     var cardCountAdjusters: some View {
         HStack {
-            cardRemover
+        //cardRemover
             Spacer()
-            cardAdder
+        //cardAdder
         }
     }
-
+    
+   
+    var themeAdjusters: some View {
+        HStack {
+     
+            Button(action:{
+                isSelected.toggle()
+                originalTheme = travelEmojis
+                
+            }, label: {
+                Image(systemName: "airplane.circle.fill")
+                    .font(.system(size:50))
+            })
+                   
+            Spacer()
+            Button(action:{
+               isSelected.toggle()
+                originalTheme = gymEmojis
+            }, label:{
+                Image(systemName: "figure.run.circle.fill")
+                    .font(.system(size:50))
+            })
+            
+            Spacer()
+            Button(action: {
+                isSelected.toggle()
+                originalTheme = studyEmojis
+            }, label:  {
+                Image(systemName: "pencil.tip.crop.circle")
+                    .font(.system(size:50))
+            })
+            
+            
+        }
+    }
+    
     var cards: some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum:120))]){
             ForEach(00..<cardCount, id: \.self) { index in
-                CardView(content: emojis[index])
+                CardView(content: originalTheme[index])
                     .aspectRatio(2/3, contentMode: .fit)
             }
+            
         }
         .foregroundColor(.orange)
     }
+
+   
+    
     func cardCountAdjuster(by offset: Int, symbol: String) -> some View {
         Button(action: {
-                cardCount += offset
+               cardCount += offset
         }, label: {
-            Image(systemName: symbol)
-        })
-        .disabled(cardCount + offset < 1 || cardCount + offset > emojis.count)
-    }
-    
-    var cardRemover: some View {
-        cardCountAdjuster(by: -1, symbol: "rectangle.stack.badge.minus.fill")
-    }
-    
-    var cardAdder: some View {
-        cardCountAdjuster(by: +1, symbol:  "rectangle.stack.badge.plus.fill")
-    }
+           Image(systemName: symbol)
+       })
+       .disabled(cardCount + offset < 1 || cardCount + offset > gymEmojis.count)
+   }
+   
+   var cardRemover: some View {
+       cardCountAdjuster(by: -1, symbol: "rectangle.stack.badge.minus.fill")
+   }
+   
+   var cardAdder: some View {
+       cardCountAdjuster(by: +1, symbol:  "rectangle.stack.badge.plus.fill")
+   }
 }
 
 struct CardView: View {
