@@ -16,13 +16,13 @@ struct ContentView: View {
     
    var gymEmojis: Array<String> = ["⚽️","🏀","⚾️","🏐","🏉","🏓", "🏸", "🏒","⛳️","🥋","🤺","🥅"]
     
-   var travelEmojis: Array<String> = ["✈️","🌎","🇪🇸","🇵🇷","🇳🇱","🥖","🍣","🌮","🍜","🥩","🌊","🍻" ]
+   var travelEmojis: Array<String> = ["✈️","🌎","🇪🇸","🇵🇷","🇳🇱","🥖","🍣","🌮","🍜","🥩","🌊","🍻"]
     
    var studyEmojis: Array<String> = ["📌","📝","📚","🖇️","✒️","🗄️","📐","📖","📒","🙇","✂️","📋"]
     
     
     // some View see what is being returned and ensures that it is some view
-    @State var cardCount: Int = 4
+    @State var cardCount: Int = 12
     @State var isSelected = false
     @State var originalTheme: Array<String> = ["👻","🎃","🕷️","😈","💀","🕸️", "🧙", "🙀","👹","😱","☠️","🍭"]
     
@@ -48,8 +48,6 @@ struct ContentView: View {
         // View Modifier
         .padding()
        
-        
-        
     }
     
     var cardCountAdjusters: some View {
@@ -66,37 +64,47 @@ struct ContentView: View {
      
             Button(action:{
                 isSelected.toggle()
-                originalTheme = travelEmojis
-                
+                originalTheme = travelEmojis.shuffled()
             }, label: {
-                Image(systemName: "airplane.circle.fill")
-                    .font(.system(size:50))
+                VStack {
+                    Image(systemName: "airplane.circle.fill")
+                        .font(.system(size:50))
+                    Text("Travel")
+                }
             })
-                   
+                
             Spacer()
             Button(action:{
                isSelected.toggle()
-                originalTheme = gymEmojis
+                originalTheme = gymEmojis.shuffled()
             }, label:{
-                Image(systemName: "figure.run.circle.fill")
-                    .font(.system(size:50))
+                VStack {
+                    Image(systemName: "figure.run.circle.fill")
+                        .font(.system(size:50))
+                    Text("Sports")
+                }
+    
             })
             
             Spacer()
             Button(action: {
                 isSelected.toggle()
-                originalTheme = studyEmojis
+                originalTheme = studyEmojis.shuffled()
             }, label:  {
-                Image(systemName: "pencil.tip.crop.circle")
-                    .font(.system(size:50))
+                VStack {
+                    Image(systemName: "pencil.tip.crop.circle.fill")
+                        .font(.system(size:50))
+                    Text("Study")
+                }
+              //  Image(systemName: "pencil.tip.crop.circle.fill")
+                    //.font(.system(size:50))
             })
-            
             
         }
     }
     
     var cards: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum:120))]){
+        LazyVGrid(columns: [GridItem(.adaptive(minimum:60))]){
             ForEach(00..<cardCount, id: \.self) { index in
                 CardView(content: originalTheme[index])
                     .aspectRatio(2/3, contentMode: .fit)
@@ -107,23 +115,23 @@ struct ContentView: View {
     }
 
    
-    
-    func cardCountAdjuster(by offset: Int, symbol: String) -> some View {
-        Button(action: {
-               cardCount += offset
-        }, label: {
-           Image(systemName: symbol)
-       })
-       .disabled(cardCount + offset < 1 || cardCount + offset > gymEmojis.count)
-   }
-   
-   var cardRemover: some View {
-       cardCountAdjuster(by: -1, symbol: "rectangle.stack.badge.minus.fill")
-   }
-   
-   var cardAdder: some View {
-       cardCountAdjuster(by: +1, symbol:  "rectangle.stack.badge.plus.fill")
-   }
+//    
+//    func cardCountAdjuster(by offset: Int, symbol: String) -> some View {
+//        Button(action: {
+//               cardCount += offset
+//        }, label: {
+//           Image(systemName: symbol)
+//       })
+//       .disabled(cardCount + offset < 1 || cardCount + offset > gymEmojis.count)
+//   }
+//   
+//   var cardRemover: some View {
+//       cardCountAdjuster(by: -1, symbol: "rectangle.stack.badge.minus.fill")
+//   }
+//   
+//   var cardAdder: some View {
+//       cardCountAdjuster(by: +1, symbol:  "rectangle.stack.badge.plus.fill")
+//   }
 }
 
 struct CardView: View {
