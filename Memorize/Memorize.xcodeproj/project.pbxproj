@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		849BE5442F29A49A00EEC40F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849BE53F2F29A49A00EEC40F /* ContentView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		84DD2E372D30C259005B49A9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		849BE53F2F29A49A00EEC40F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		84DD2E252D30C252005B49A9 /* Memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DD2E362D30C259005B49A9 /* MemorizeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemorizeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DD2E402D30C259005B49A9 /* MemorizeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemorizeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				84DD2E272D30C252005B49A9 /* Memorize */,
+				849BE53F2F29A49A00EEC40F /* ContentView.swift */,
 				84DD2E392D30C259005B49A9 /* MemorizeTests */,
 				84DD2E432D30C259005B49A9 /* MemorizeUITests */,
 				84DD2E262D30C252005B49A9 /* Products */,
@@ -236,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				849BE5442F29A49A00EEC40F /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
